@@ -1,0 +1,369 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  padding: 15px;
+  background-color: white;
+}
+
+.header-title {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.section-one {
+  background-image: url("./asset/background-pic.jpg");
+  background-color: #cccccc;
+  height: 850px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  padding: 20px;
+}
+
+.section-one-title {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  font-size: 60px;
+  font-weight: 700;
+  color: white;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+
+.description {
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  padding-bottom: 90px;
+}
+
+.section-one-selector {
+  padding-top: 20px;
+}
+
+.selector {
+  padding-bottom: 50px;
+}
+
+.cities-select {
+  min-width: 30%;
+  border-radius: 10px;
+}
+
+.option {
+  padding-top: 40px;
+  background-color: aqua;
+}
+
+.text-select {
+  color: white;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.section-one-button {
+  padding-top: 70px;
+}
+
+.btn {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  width: 50%;
+  font-size: 20px;
+}
+
+.btn:disabled {
+  background-color: transparent;
+  border: 2px solid grey;
+  color: white;
+  width: 50%;
+  font-size: 20px;
+}
+.btn:hover {
+  background-color: white;
+  border: 2px solid black;
+  color: black;
+  transition: 1s;
+}
+
+option {
+  color: white; /* Adjust the color as desired */
+  font-style: italic; /* Adjust the font style as desired */
+  font-size: 20px;
+}
+
+#cities {
+  background-color: black;
+  color: white;
+  padding: 15px;
+}
+
+#districts {
+  background-color: black;
+  color: white;
+  padding: 15px;
+}
+
+.section-two {
+  display: none;
+  background-color: #707070;
+}
+
+.section-two-title {
+  padding-top: 30px;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.section-two-information {
+  padding: 20px;
+}
+#result {
+  font-size: 100px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#status {
+  font-size: 100px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#concentration {
+  font-size: 100px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.bi-arrow-clockwise::before {
+  content: "\f116";
+  font-size: 20px;
+  padding: 20px;
+}
+
+#last-update {
+  font-size: 18px;
+}
+
+#loading-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  color: black;
+}
+
+.card {
+  min-width: 100px;
+  height: 100%;
+}
+
+.card-header {
+  text-align: center;
+  background-color: black;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fcfcfc;
+}
+
+.card-body {
+  background-color: #bcbec2;
+}
+
+#error-message {
+  font-size: large;
+  color: red;
+  display: none;
+}
+
+.card-main {
+  margin-bottom: 30px;
+}
+
+.btn-nextpage {
+  margin-top: 30px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 20px;
+}
+
+.section-three {
+  display: none;
+  background-color: white !important;
+  padding: 30px;
+}
+
+.section-three-title {
+  padding-top: 30px;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.accordion-button {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.accordion-body {
+  text-align: justify;
+  font-size: 15px;
+}
+
+.btn-nextpagesecond {
+  margin-top: 50px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  color: black;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.section-four {
+  display: none;
+  background-color: black !important;
+  padding: 30px;
+}
+
+.section-four-title {
+  padding-top: 30px;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  color: white;
+}
+
+.image-category {
+  position: relative;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 50%;
+  height: 50%;
+}
+
+.image-source {
+  position: relative;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 50%;
+  height: 50%;
+  color: #bcbec2;
+  font-style: italic;
+}
+
+.categorygreen {
+  color: white;
+  border: 2px solid green;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: justify;
+}
+
+.good {
+  color: green;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.moderate {
+  color: yellow;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.categoryyellow {
+  color: white;
+  border: 2px solid yellow;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: justify;
+}
+
+.unhealthy-sensitive {
+  color: orange;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.categoryorange {
+  color: white;
+  border: 2px solid orange;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: justify;
+}
+
+.unhealthy {
+  color: red;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.categoryred {
+  color: white;
+  border: 2px solid red;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: justify;
+}
+
+.very-unhealthy {
+  color: purple;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.categorypurple {
+  color: white;
+  border: 2px solid purple;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: justify;
+}
+
+.hazardous {
+  color: maroon;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.categorymaroon {
+  color: white;
+  border: 2px solid maroon;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: justify;
+}

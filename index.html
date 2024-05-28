@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Air Quality in Malaysia</title>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+      integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+      integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+      crossorigin="anonymous"
+    ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <div>
+      <header>
+        <nav class="header">
+          <span class="header-title"
+            >Air Quality Index (AQI) and Air Pollution Information</span
+          >
+        </nav>
+      </header>
+    </div>
+
+    <div class="section-one">
+      <div class="section-one-title">
+        <h1 class="title">Air Quality in Malaysia</h1>
+        <h4 class="description">
+          Please select <b>cities</b> and <b>districts</b> to check the Air
+          Quality Index (AQI) and Air Pollution Information
+        </h4>
+        <div class="section-one-selector">
+          <div class="row">
+            <div class="selector col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+              <div>
+                <div class="text-select">
+                  <p>Cities</p>
+                </div>
+                <select
+                  class="cities-select form-select"
+                  aria-label=".form-select example"
+                  id="cities"
+                >
+                  <option selected disabled>Open this select menu</option>
+                </select>
+              </div>
+            </div>
+            <div class="selector col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+              <div>
+                <div class="text-select">
+                  <p>Districts</p>
+                </div>
+                <select
+                  class="cities-select form-select"
+                  aria-label=".form-select example"
+                  id="districts"
+                >
+                  <option selected disabled>Open this select menu</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="error-message"></div>
+        <div class="section-one-button">
+          <button
+            onclick="getAirQuality()"
+            class="btn"
+            id="getAirQualityButton"
+            disabled
+          >
+            Get Air Quality
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="section-two">
+      <div class="section-two-title">
+        <span> Air Quality Index (AQI) and Air Pollution Information in</span>
+        <span id="showdistrict"></span>
+      </div>
+      <div>
+        <span class="icons"
+          ><i class="bi bi-arrow-clockwise" id="refresh-button"></i
+        ></span>
+        <span id="last-update"></span>
+      </div>
+      <div class="section-two-information">
+        <div class="row">
+          <div class="card-main col-xl-4 col-lg-6 col-md-4 col-sm-12">
+            <div class="card">
+              <div class="card-header">Air Quality Index (AQI)</div>
+              <div class="card-body">
+                <div id="result"></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-main col-xl-4 col-lg-6 col-md-4 col-sm-12">
+            <div class="card">
+              <div class="card-header">Air Pollution Level</div>
+              <div class="card-body">
+                <div id="status"></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-main col-xl-4 col-lg-12 col-md-4 col-sm-12">
+            <div class="card">
+              <div class="card-header">
+                Air Pollution Concentration (in µg/m³ unit)
+              </div>
+              <div class="card-body">
+                <div id="concentration"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button onclick="getMoreInformation()" class="btn-nextpage">
+          AIR QUALITY ANALYSIS AND STATISTICS FOR MALAYSIA
+        </button>
+      </div>
+    </div>
+    <div class="container-xxl">
+      <div class="section-three">
+        <div class="section-three-title">
+          <p>AIR QUALITY ANALYSIS AND STATISTICS FOR MALAYSIA</p>
+        </div>
+        <div class="section-three-content">
+          <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseOne"
+                  aria-expanded="true"
+                  aria-controls="panelsStayOpen-collapseOne"
+                >
+                  How bad is the quality of air in Malaysia?
+                </button>
+              </h2>
+              <div
+                id="panelsStayOpen-collapseOne"
+                class="accordion-collapse collapse show"
+              >
+                <div class="accordion-body">
+                  <p>
+                    The country of Malaysia is found in southeast Asia, made up
+                    of thirteen states and three federal territories. These are
+                    separated by the south china sea into two separate sections,
+                    with peninsular Malaysia being the region that it typically
+                    associated with the countries name, hosting the capital city
+                    of Kuala Lumpur. The other region is located in Borneo,
+                    being known as the eastern portion of Malaysia respectively.
+                    There are some noticeable discrepancies in the levels of
+                    pollution between the two regions. In 2019 Malaysia came in
+                    ranked 50th place amongst all the countries of the world,
+                    with a PM2.5 rating of 19.36 µg/m³, putting its yearly
+                    average into the ‘moderately’ polluted range.
+                  </p>
+                  <p>
+                    In order for a city or country to be classified as
+                    moderately polluted requires a PM2.5 reading anywhere
+                    between 12.1 to 35.4 µg/m³, putting Malaysia somewhat at the
+                    lower end of this moderate spectrum, however as it can be
+                    observed, there are months throughout the year that
+                    experience rapid spikes in pollution, and as such it is of
+                    importance to take this into account, both in regards to the
+                    yearly average rating as well as the causes and appropriate
+                    measures that may be taken against it. In terms of how
+                    polluted it is in comparison to other countries in south
+                    east Asia, it can be seen that Malaysia actually came in
+                    with a significantly better placing than many of its ASEAN
+                    (Association of South East Asian Nations) neighbors, coming
+                    in with a better position ahead of countries such as
+                    Thailand, which presented with a ranking of 28th place in
+                    2019, Vietnam (15th place) and Indonesia (6th place). This
+                    goes to show that whilst Malaysia has a plethora of
+                    pollution and haze related issues that it has to deal with
+                    year in year out, its neighbors give some perspective of the
+                    improvements that it has made over the last few decades of
+                    industrial growth, and despite facing many obstacles in its
+                    path towards cleaner air, pollution levels could eventually
+                    be reduced quite significantly.
+                  </p>
+                  <p>
+                    Some of these aforementioned obstacles include an over
+                    reliance on vehicles, a lack of highly efficient public
+                    transport systems as compared to other countries (although
+                    this is changing rapidly with large amounts of investment
+                    going into public transport initiatives and projects) as
+                    well as comparatively lax rules regarding types of fuels
+                    used as well as heavy fuel subsidies, causing a number of
+                    pollutants such as nitrogen dioxide (NO2) and sulfur dioxide
+                    (SO2) to enter into the atmosphere, causing worse US AQI
+                    readings as well as an increased level of PM2.5 found in the
+                    air, coming heavily from the automobile sector.
+                  </p>
+                  <p>
+                    PM2.5 refers to fine particulate matter of 2.5 micrometers
+                    or less, with highly detrimental effects displayed in those
+                    who breathe it over long periods of time. With its 50th
+                    place ranking worldwide out of 98 countries ranked, it
+                    stands as a country that suffers from periods of extremely
+                    poor air quality where these PM2.5 levels will climb quickly
+                    to dangerous levels, however throughout the rest of the year
+                    when Malaysia is absent from these pollution spikes (which
+                    when considered, are sometimes out of its control due to
+                    transborder smoke issues) the air quality sits at the lower
+                    end of the moderate rating, with some cities finding
+                    themselves in the ‘good’ rated bracket throughout the
+                    majority of the year, and others finding themselves sitting
+                    within the World Health Organization’s target reading of 0
+                    to 10 µg/m³ during a majority of the months of the year, as
+                    recorded in 2019.
+                  </p>
+                  <p>
+                    When observing some of the cities displayed on the IQAir
+                    website, such as the top seven most polluted cities in
+                    Malaysia as of 2019, it is evident that the levels of
+                    pollution in these cities could be somewhat of a concern,
+                    and be bringing down the countries yearly average ranking.
+                    These top seven cities, which include ones such as Kuala
+                    Lumpur, Putrajaya, Shah Alam and Petaling Jaya to name a
+                    few, sat at moderate ratings all year round, with rapid
+                    climbs observed in August, followed by a dangerous spike in
+                    pollution in the month of September, sometimes spilling over
+                    into October but gradually receding afterwards. For cities
+                    such as these, especially during the latter part of the
+                    year, it is apparent that they suffer from a poorer quality
+                    of air, and would be of significant concern for those living
+                    there year-round, with preventative measures being of
+                    greater importance.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="panelsStayOpen-collapseTwo"
+                >
+                  What are the main causes of air pollution found in Malaysia?
+                </button>
+              </h2>
+              <div
+                id="panelsStayOpen-collapseTwo"
+                class="accordion-collapse collapse"
+              >
+                <div class="accordion-body">
+                  <p>
+                    With its multiple sources of pollution, there would be a
+                    large number of different chemicals, compounds and
+                    particulate matter making up the pollution collective that
+                    finds itself in the Malaysian air. The main offending
+                    pollutants, which would be found in similar quantities in
+                    other countries around south east Asia, would be ones such
+                    as the previously mentioned nitrogen dioxide, which finds
+                    itself being emitted mostly by cars, trucks, buses and other
+                    forms of transport. The levels of NO2 found in the air are
+                    often a good indicator of how much pollution is coming from
+                    vehicles alone, as it is the primary pollutant emitted from
+                    cars and other engines. They are so well correlated that in
+                    fact areas that have high concentrations of traffic or see
+                    large volumes of cars passing through them, incidentally
+                    have high levels of NO2 present in the atmosphere
+                    surrounding it.
+                  </p>
+
+                  <p>
+                    Other primary and secondary pollutants would include sulfur
+                    dioxide (SO2) and carbon monoxide (CO), with carbon monoxide
+                    finding a majority of its emissions from any fuel burning
+                    appliance, unfortunately, and often fatally in many cases,
+                    located indoors in people’s homes. These sources would
+                    include appliances (often malfunctioning or improperly cared
+                    for ones) such as furnaces, water heaters, as well as
+                    generators and any variety of wood burning stoves. Carbon
+                    monoxide is formed from the improper combustion of carbon,
+                    often in environments such as contained or sealed spaces
+                    that lack oxygen. As such, when the carbon undergoes
+                    combustion, it lacks the normal abundance of oxygen
+                    molecules in the air to bind with and form the less deadly
+                    and more inert carbon dioxide (CO2), instead forming carbon
+                    monoxide, which in turn contributes more to air pollution,
+                    being one of the previously mentioned ‘secondary pollutant’.
+                  </p>
+
+                  <p>
+                    A secondary pollutant is one that is not emitted directly
+                    from a single source, but is instead formed from the
+                    reaction between separate chemicals, hence why it is known
+                    as a secondary pollutant. As such, primary pollutants are
+                    ones that are released directly from their source, including
+                    pollutants such as nitrogen oxides (NOx), volatile organic
+                    compounds (VOC’s), lead, mercury and other forms of
+                    particulate matter. It is important to note that some
+                    pollutants can be both primary and secondary at the same
+                    time, with examples being nitrogen dioxide and carbon
+                    monoxide. Both can be released directly from a polluting
+                    source such as a vehicle, or be formed via chemical reaction
+                    later on in the atmosphere.
+                  </p>
+
+                  <p>
+                    Moving on to the other causes of poor air quality in
+                    Malaysia, it is apparent that whilst vehicular emission
+                    makes up the majority of pollution found across most of its
+                    cities, there are other salient sources as well, which would
+                    include ones such as factories and other industrial
+                    production areas, construction sites which can release high
+                    amounts of finely ground dirt onto the roads and into the
+                    air, sometimes containing heavy metals and other tiny
+                    particles with detrimental health effects. When a
+                    construction site is poorly maintained, the dust and fine
+                    particles produced as a natural byproduct can make their way
+                    onto nearby roads. This in turn can combine with exhaust
+                    fumes, often combining with materials such as black carbon
+                    (the primary component of soot and highly damaging to both
+                    human health and the atmosphere). Once these fine particles
+                    combine in the form of road dust, high volumes of traffic
+                    can pass over them and send them billowing up into the
+                    atmosphere, further adding to the levels on PM2.5 found in
+                    the air and subsequently adding to the list of health
+                    effects that can be caused by the inhalation of such
+                    substances.
+                  </p>
+
+                  <p>
+                    Lastly and most importantly, are the huge clouds of haze and
+                    smog that come from open burning sources. These can occur
+                    locally, with forest areas and large amounts of organic
+                    refuse being burnt out in the countryside and rural areas of
+                    Malaysia, but the most obvious source being the infamous
+                    forest and farmland fires coming from Indonesia, mainly
+                    Sumatra, whereby farmers practice the highly illegal slash
+                    and burning farming methods, setting fire to crop stubble
+                    and large areas of forest or plant land. Whilst this is a
+                    quick and effective way of clearing land for farming as well
+                    as returning nutrients to the soil, it also has the highly
+                    disastrous effect of causing vast amounts of smoke to make
+                    their way over to Malaysia, which out of all the countries
+                    in the region is hit the most hard by it, due to winds and
+                    geographical location, although Singapore can oftentimes
+                    suffer the same detrimental effects.
+                  </p>
+
+                  <p>
+                    Many famous years on records have logged the disastrous
+                    effects of these clouds of smoke drifting over to Malaysia,
+                    with too many on record to go into detail. Symptoms of these
+                    smoke clouds can include heavy smog and haze, reduced
+                    visibility in major cities such as Kuala Lumpur, the closure
+                    of schools as well as interruption of travel, both local and
+                    international. Most important to note is the large number of
+                    premature deaths attributed to these haze clouds, with
+                    children, elderly and those with a predisposition to
+                    respiratory ailments being most vulnerable.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseThree"
+                  aria-expanded="false"
+                  aria-controls="panelsStayOpen-collapseThree"
+                >
+                  What are the health issues associated with pollution in
+                  Malaysia?
+                </button>
+              </h2>
+              <div
+                id="panelsStayOpen-collapseThree"
+                class="accordion-collapse collapse"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Health issues and the risks associated with higher levels of
+                    PM2.5 and PM10 in the air are numerous, including a myriad
+                    of problems, often primarily affecting the respiratory and
+                    cardiovascular systems. When the pollution reaches its
+                    highest levels in the air, a number of short-term problems
+                    can present themselves. These include symptoms such as
+                    increased chance of lung and throat infections, as well as
+                    irritation to the skin, eyes and nasal passages. PM10 can
+                    cause asthma sufferers to have higher numbers of acute
+                    attacks, as well as causing it to develop in individuals who
+                    may not have suffered from it before.
+                  </p>
+
+                  <p>
+                    Sections of the population including young children who grow
+                    up exposed to these pollutants and thus breathe them in over
+                    prolonged periods of time, can develop a decrease in their
+                    overall lung capacity, which can in turn stunt growth and
+                    cause developmental issues. Pregnant mothers can also
+                    experience birth defects in their children if overexposed,
+                    due to the ability of the smaller sized PM2.5 to enter the
+                    bloodstream via the lungs and circulate to the rest of the
+                    body. Once it has entered the bloodstream, instances of
+                    cancer can increase, due to the fine particulate matters
+                    ability to permeate deep into the lung tissue and stay
+                    there. Along with the increased risk of cancer there is also
+                    chances for individuals to develop heart diseases and
+                    arrythmias, along with a heightened risk of heart attacks,
+                    particularly amongst the elderly or those with preexisting
+                    cardiac conditions. Due to the large amount of health
+                    problems associated with breathing in elevated levels of
+                    pollution, it would be of interest to many people living in
+                    Malaysia to take preventative measures in regards to
+                    reducing their exposure to the smoke and haze that can fill
+                    the skies. These measures may include the wearing of
+                    particle filtering masks during particularly bad spells, as
+                    well as referring to air quality maps that show daily and
+                    hourly updates of the air quality index (AQI), or air
+                    pollution index (API) as it is known locally in Malaysia.
+                    Such maps are available to view on the IQAir website, as
+                    well as on the AirVisual app that delivers up to date
+                    reports on pollution levels direct to people’s phones.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseFour"
+                  aria-expanded="false"
+                  aria-controls="panelsStayOpen-collapseFour"
+                >
+                  When is air pollution at its worst in Malaysia?
+                </button>
+              </h2>
+              <div
+                id="panelsStayOpen-collapseFour"
+                class="accordion-collapse collapse"
+              >
+                <div class="accordion-body">
+                  <p>
+                    When observing the data taken over 2019 in regards to the
+                    levels of PM2.5 present in the air, it is seen that in
+                    September there is countrywide spikes in pollution that
+                    often jump up into the ‘unhealthy’ category, one which
+                    requires a fairly substantial PM2.5 reading of anywhere
+                    between 55.5 to 150.4 µg/m³ to be classed as such. Five
+                    cities are observed as having taken the leap into the
+                    unhealthy category, with 17 cities moving up from a moderate
+                    rating into the ‘unhealthy for sensitive groups’ category.
+                    Whilst September is most definitely top of the list in terms
+                    of most polluted months, as mentioned before the pollution
+                    jump can sometimes begin in august and often times spill
+                    over into October, and as such heightened levels of caution
+                    should be taken during those three months.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseFive"
+                  aria-expanded="false"
+                  aria-controls="panelsStayOpen-collapseFive"
+                >
+                  What is the most polluted city in Malaysia?
+                </button>
+              </h2>
+              <div
+                id="panelsStayOpen-collapseFive"
+                class="accordion-collapse collapse"
+              >
+                <div class="accordion-body">
+                  <p>
+                    As of 2019 the most polluted city in Malaysia caught on
+                    record was Putrajaya, coming in with a PM2.5 reading of 22.4
+                    µg/m³. Whilst this city narrowly beat out Kuala Lumpur,
+                    which came in with a reading of 21.6 µg/m³, there were
+                    several months of data missing from the readings, as such
+                    the results may be skewed somewhat and Kuala Lumpur may
+                    unofficially take the top spot, with the haze and pollution
+                    spike in Kuala Lumpur being far more prominent than that of
+                    Putrajaya’s. However, with its extremely close proximity to
+                    Kuala Lumpur, it stands to reason that Putrajaya will have
+                    very similar levels of pollution, with the effects of
+                    high-level vehicle usage as well as the industrial sector
+                    playing a large part in the levels of ambient pollution that
+                    the city sees round the course of the year. But as it stands
+                    with the average taken from yearly readings of PM2.5,
+                    Putrajaya still takes the top spot of most polluted cities
+                    recorded in Malaysia as of 2019.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button onclick="getCategories()" class="btn-nextpagesecond">
+          AIR QUALITY CATEGORY
+        </button>
+      </div>
+    </div>
+    <div class="section-four">
+      <div class="section-four-title">
+        <p>AIR QUALITY ANALYSIS AND STATISTICS FOR MALAYSIA</p>
+      </div>
+      <div class="section-four-content">
+        <img
+          class="image-category"
+          src="https://cms.iqair.com/sites/default/files/inline-images/AQI%29Chart_US.png"
+        />
+        <p class="image-source">
+          Pictured: Air quality index chart with corresponding PM2.5 μg/m3.
+        </p>
+        <div class="row">
+          <div class="categorygreen col-12">
+            <p class="good">Good</p>
+            <ul>
+              <li>Air Quantity Index (AQI) : 0 - 50</li>
+              <li>Air Pollution Concentration (in µg/m³ unit): 0 - 12.0</li>
+              <li>Color: Green</li>
+            </ul>
+            <p>
+              When categorised as good, air quality poses little to no health
+              risk at an AQI of 0 up to an AQI of 50. You can enjoy your usual
+              outdoor activities. You may choose to open your windows and
+              ventilate your home to bring in outdoor air.
+            </p>
+          </div>
+          <div class="categoryyellow col-12">
+            <p class="moderate">Moderate</p>
+            <ul>
+              <li>Air Quantity Index (AQI) : 51 - 100</li>
+              <li>Air Pollution Concentration (in µg/m³ unit): 12.1 - 35.4</li>
+              <li>Color: Yellow</li>
+            </ul>
+            <p>
+              Due to the risk of respiratory illness symptoms, sensitive groups
+              should greatly reduce outdoor exercise when air quality is
+              moderate (US AQI 51-100). Avoid ventilating indoor spaces with
+              outdoor air, and close windows to avoid letting outdoor air
+              pollution indoors.
+            </p>
+            <p>
+              Note that sensitive groups for all categories include children,
+              the elderly, pregnant people, and people with cardiac and
+              pulmonary diseases.
+            </p>
+          </div>
+          <div class="categoryorange col-12">
+            <p class="unhealthy-sensitive">Unhealthy for Sensitive Groups</p>
+            <ul>
+              <li>Air Quantity Index (AQI) : 101 - 150</li>
+              <li>Air Pollution Concentration (in µg/m³ unit): 35.5 - 55.5</li>
+              <li>Color: Orange</li>
+            </ul>
+            <p>
+              When air quality is unhealthy for sensitive groups, everyone is at
+              risk for eye, skin, and throat irritation as well as respiratory
+              problems. The public should greatly reduce outdoor exertion.
+            </p>
+            <p>
+              Sensitive groups are at greater health risk, should avoid all
+              outdoor activity, and should consider wearing an air pollution
+              mask outdoors. Ventilation is discouraged. A high-performance air
+              purifier should be turned on if indoor air quality is unhealthy.
+            </p>
+          </div>
+          <div class="categoryred col-12">
+            <p class="unhealthy">Unhealthy</p>
+            <ul>
+              <li>Air Quantity Index (AQI) : 151 - 200</li>
+              <li>Air Pollution Concentration (in µg/m³ unit): 55.6 - 150.4</li>
+              <li>Color: Red</li>
+            </ul>
+            <p>
+              Unhealthy AQI measurements mean that there is an increased
+              likelihood of heart and lung aggravation as well as health impacts
+              among the public, particularly for sensitive groups.
+            </p>
+            <p>
+              Everyone should avoid and wear a pollution mask outdoors.
+              Ventilation is discouraged. Air purifiers should be turned on.
+            </p>
+          </div>
+          <div class="categorypurple col-12">
+            <p class="very-unhealthy">Very Unhealthy</p>
+            <ul>
+              <li>Air Quantity Index (AQI) : 201 - 300</li>
+              <li>
+                Air Pollution Concentration (in µg/m³ unit): 150.5 - 250.4
+              </li>
+              <li>Color: Purple</li>
+            </ul>
+            <p>
+              When air quality is very unhealthy, the public will be noticeably
+              affected. Sensitive groups will experience reduced endurance in
+              activities. These individuals should remain indoors and limit
+              activities.
+            </p>
+            <p>
+              Everyone should avoid outdoor exercise and wear a pollution mask
+              outdoors. Ventilation is discouraged. Air purifiers should be
+              turned on.
+            </p>
+          </div>
+          <div class="categorymaroon col-12">
+            <p class="hazardous">Hazardous</p>
+            <ul>
+              <li>Air Quantity Index (AQI) : 301 and above</li>
+              <li>
+                Air Pollution Concentration (in µg/m³ unit): 250.5 and above
+              </li>
+              <li>Color: Maroon</li>
+            </ul>
+            <p>
+              Everyone is at high risk of experiencing strong irritation and
+              negative health effects that could trigger cardiovascular and
+              respiratory illnesses.
+            </p>
+            <p>
+              Avoid exercise and remain indoors. Avoid outdoor exercise and wear
+              a pollution mask outdoors. Ventilation is discouraged. Air
+              purifiers should be turned on.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="loading-spinner" style="display: none">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
